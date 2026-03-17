@@ -27,8 +27,8 @@ renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 document.body.appendChild(renderer.domElement);
 
 // ─── Geometry — aspect matches cat image (832×1248) ──────────────────────────
-const IMG_W = 832, IMG_H = 1248;
-const planeH = 6.0;
+const IMG_W = 2730, IMG_H = 4096;
+const planeH = 4.0;
 const planeW = planeH * (IMG_W / IMG_H);
 const planeGeometry = new THREE.PlaneGeometry(planeW, planeH);
 
@@ -52,19 +52,55 @@ async function init() {
     const [diffuse, depth, background] = await Promise.all([
         loader.loadAsync('res/tex/diffuse.png'),
         loader.loadAsync('res/tex/depth.png'),
-        loader.loadAsync('res/tex/bg_black.jpg'),
+        loader.loadAsync('res/tex/bg_green.jpg'),
     ]).catch(err => { console.error('[depth3] texture load failed:', err); throw err; });
 
     shader = new DepthShaderMaterial();
-    shader.setTextures(diffuse, depth, background);  // sets texSize from image
+    shader.setTextures(diffuse, depth, background);
 
-    // Cache tex dimensions for light position conversion
-    texW = diffuse.image.width;
-    texH = diffuse.image.height;
+    // normal cat
+    // shader.setGlassStrength(0.0) // the single switch — turns off all glass
+    // shader.setRim(0.5)           // back to normal rim
+    // shader.setSSS(0.4)           // restore orange SSS glow
+    // shader.setAO(0.5)            // restore ambient occlusion
+
+    // thick glass cat
+    shader.setIOR(2.0)           // high bend — heavy crystal/thick glass
+    shader.setGlassStrength(.35) // fully glass everywhere
+    shader.setReflStrength(0.4)  // strong reflection warp
+    shader.setRefrStrength(0.5)  // refraction slightly stronger than reflection (thick = more bend)
+    shader.setRim(1.2)           // bright rim — glass edges glow
+    shader.setSSS(0.0)           // no orange glow — glass is neutral
+    shader.setAO(0.1)            // minimal darkening — glass is bright
+
+    // Sync plane size so worldPos reconstruction matches geometry
+    shader.uPlaneSize.value.set(planeW, planeH);
 
     const mat  = shader.createMaterial();
     const mesh = new THREE.Mesh(planeGeometry, mat);
     scene.add(mesh);
+
+    // ── Glass controls via keyboard ──
+    // G / Shift+G  →  increase / decrease glass strength
+    // I / Shift+I  →  increase / decrease IOR
+    window.addEventListener('keydown', (e) => {
+        if (!shader) return;
+        const step = e.shiftKey ? -0.05 : 0.05;
+        if (e.key === 'g' || e.key === 'G') {
+            shader.uGlassStrength.value = Math.min(1, Math.max(0,
+                shader.uGlassStrength.value + step));
+            console.log('[glass] strength:', shader.uGlassStrength.value.toFixed(2));
+        }
+        if (e.key === 'i' || e.key === 'I') {
+            shader.uIOR.value = Math.min(2.5, Math.max(1.0,
+                shader.uIOR.value + step * 5));
+            console.log('[glass] IOR:', shader.uIOR.value.toFixed(2));
+        }
+    });
+
+    // Cache tex dimensions for light position conversion
+    texW = diffuse.image.width;
+    texH = diffuse.image.height;
 
     await renderer.setAnimationLoop(animate);
     console.log(`[depth3] ready — texture ${texW}×${texH}`);
@@ -79,7 +115,12 @@ function animate() {
     camera.lookAt(0, 0, 0);
 
     if (shader) {
-        shader.updateCameraPosition(camera.position.x, camera.position.y, camera.position.z);
+        // Pass actual Three.js camera position — used for viewDir in glass shader
+        shader.updateCameraPosition(
+            camera.position.x,
+            camera.position.y,
+            camera.position.z
+        );
     }
 
     renderer.render(scene, camera);
