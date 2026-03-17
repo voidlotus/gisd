@@ -1,0 +1,323 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project II</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+<!--    &lt;!&ndash; Prism CSS with Tomorrow theme and plugins &ndash;&gt;-->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.30.0/themes/prism-tomorrow.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.30.0/plugins/toolbar/prism-toolbar.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="anime-style.css">
+
+</head>
+<body>
+<script type="module" src="/main.js"></script>
+<script type="module" src="/pageanimate.js"></script>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<!-- Prism.js core and plugins from CDN -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.30.0/prism.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.30.0/plugins/autoloader/prism-autoloader.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.30.0/plugins/toolbar/prism-toolbar.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.30.0/plugins/copy-to-clipboard/prism-copy-to-clipboard.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.30.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.30.0/components/prism-javascript.min.js"></script>
+
+
+
+<div id="splash-screen">
+    <div class="grid-container"></div>
+</div>
+
+<div id="main-content">
+
+    <center>
+        <table border=0 cellspacing=5 cellpadding=5 width=90%>
+
+            <tr>
+                <td align=center>
+                    <br><font size=5> Project 02: Reflection + Refraction+ Fresnel effects with Normal Maps
+                    <br></font>
+                    <br><font size=6>Ignatius Alex Wijayanto<br></font>
+                </td>
+            </tr>
+
+            <tr>
+                <td align=center>
+                    <font size=4>
+                        <img src="res/00.jpg" height=100%><br>
+                        This is the first image of the project. The first image will always be bottom. The improvements will be added to top.
+                    </font>
+                </td>
+            </tr>
+
+        </table>
+    </center>
+    <hr>
+    <h2>Resources</h2>
+    <div class="card-deck">
+        <div class="card custom-card">
+            <img src="/res/tex/train.png" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Diffuse</h5>
+                <!--            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>-->
+            </div>
+        </div>
+
+<!--        <div class="card custom-card">-->
+<!--            <img src="/public/res/tex/albedo.png" class="card-img-top" alt="...">-->
+<!--            <div class="card-body">-->
+<!--                <h5 class="card-title">Albedo Map</h5>-->
+<!--                &lt;!&ndash;            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>&ndash;&gt;-->
+<!--            </div>-->
+<!--        </div>-->
+        <div class="card custom-card">
+            <img src="/res/tex/train-normal.png" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Normal Map</h5>
+                <!--            <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>-->
+            </div>
+        </div>
+        <div class="card custom-card">
+            <img src="/res/tex/building.jpg" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Background Map</h5>
+                <!--            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>-->
+            </div>
+        </div>
+        <div class="card custom-card">
+            <img src="/res/tex/flower.png" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Env Map</h5>
+                <!--            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>-->
+            </div>
+        </div>
+    </div>
+    <hr>
+    <p>
+<!--        <button class="btn btn-custom-cullar" type="button" data-toggle="collapse" data-target="#collapse1" aria-expanded="false" aria-controls="collapseExample">-->
+<!--            Shader Code-->
+<!--        </button>-->
+<!--        <button class="btn btn-custom-cullar" type="button" data-toggle="collapse" data-target="#collapse2" aria-expanded="false" aria-controls="collapseExample">-->
+<!--            Albedo Map Prompt-->
+<!--        </button>-->
+<!--        <button class="btn btn-custom-cullar" type="button" data-toggle="collapse" data-target="#collapse3" aria-expanded="false" aria-controls="collapseExample">-->
+<!--            Specular Map Prompt-->
+<!--        </button>-->
+    </p>
+    <div class="collapse" id="collapse1">
+<!--        <div class="card card-body custom-card-body">-->
+<!--            -->
+<!--        </div>-->
+    </div>
+
+<!--    <div class="collapse" id="collapse2">-->
+<!--        <div class="card card-body custom-card-body">-->
+
+<!--        <pre >-->
+<!--            <code class="language-javascript line-numbers">-->
+<!--                Create a clean albedo (diffuse color) map from this cat image. Remove all lighting, shadows, and specular highlights to show only pure surface colors:-->
+
+<!--                COLOR INFORMATION TO PRESERVE:-->
+<!--                - Gray-brown fur color on head, back, and body-->
+<!--                - White fur on face (bridge of nose, muzzle, chin)-->
+<!--                - White chest fur-->
+<!--                - White paws/feet-->
+<!--                - Pink nose leather-->
+<!--                - Pink inner mouth/lips-->
+<!--                - Natural eye color (greenish-yellow irises, black pupils)-->
+<!--                - White whiskers-->
+<!--                - Teal/green stool base color-->
+
+<!--                CORRECTIONS TO APPLY:-->
+<!--                - Remove all shadows (under chin, between legs, ear shadows)-->
+<!--                - Eliminate highlights (on nose, eyes, stool surface)-->
+<!--                - Flatten lighting to show uniform base colors-->
+<!--                - Remove ambient occlusion darkening-->
+<!--                - Eliminate reflected light color casts-->
+<!--                - Normalize exposure across entire surface-->
+
+<!--                TEXTURE DETAILS TO MAINTAIN:-->
+<!--                - Subtle fur color variation (not lighting-based)-->
+<!--                - Natural color transitions between gray and white areas-->
+<!--                - Slight color variation in plastic stool (material color only)-->
+<!--                - Keep individual fur strand color variety-->
+<!--                - Preserve natural markings and patterns-->
+
+<!--                OUTPUT SPECS:-->
+<!--                - Pure diffuse color only - no lighting information-->
+<!--                - Even, flat appearance as if lit by 100% neutral white light-->
+<!--                - No black crush or white blowout-->
+<!--                - Mid-tone values preserved-->
+<!--                - Clean, game-ready albedo texture-->
+<!--                - Background should be neutral or transparent-->
+
+<!--                The result should look like a material swatch - showing what color the surfaces ARE, not how they're LIT.-->
+<!--            </code>-->
+<!--        </pre>-->
+<!--        </div>-->
+<!--    </div>-->
+
+<!--    <div class="collapse" id="collapse3">-->
+<!--        <div class="card card-body custom-card-body">-->
+
+<!--        <pre >-->
+<!--            <code class="language-javascript line-numbers">-->
+<!--                Create a grayscale specular/glossiness map from this cat image, where white = very shiny/specular, gray = slightly specular, and black = no specular reflection.-->
+
+<!--                SPECULAR ASSIGNMENTS:-->
+
+<!--                HIGH SPECULAR (WHITE - bright values 200-255):-->
+<!--                - Cat eyes (cornea/wet surface of eyeballs) - very reflective-->
+<!--                - Eye highlights area - maximum specularity-->
+<!--                - Nose leather (wet appearance) - high specular-->
+
+<!--                MEDIUM SPECULAR (MID-GRAY - values 100-150):-->
+<!--                - Plastic stool surface - moderate shine-->
+<!--                - Paw pads (slightly moist) - subtle specular-->
+
+<!--                LOW SPECULAR (DARK GRAY - values 30-80):-->
+<!--                - Short fur on face - minimal specular-->
+<!--                - Body fur - very subtle shine-->
+<!--                - Whiskers - slight specular-->
+
+<!--                NO SPECULAR (BLACK - values 0-20):-->
+<!--                - Fluffy/matte fur on chest - completely matte-->
+<!--                - Longer fur areas - no specular-->
+<!--                - Inner ears - matte-->
+<!--                - White facial fur - matte-->
+<!--                - Background - pure black-->
+
+<!--                KEY REQUIREMENTS:-->
+<!--                - Eyes should be the brightest/whitest area (primary specular hotspot)-->
+<!--                - Nose should be bright but slightly less than eyes-->
+<!--                - Most of the cat's fur should be very dark (nearly black) - fur is matte-->
+<!--                - Stool should be uniform medium gray (plastic has moderate shine)-->
+<!--                - Sharp, clean transitions between specular zones-->
+<!--                - No color information - pure grayscale only-->
+<!--                - Smooth gradients where appropriate (like on eye spheres)-->
+
+<!--                OUTPUT: Grayscale map optimized for PBR specular workflow-->
+<!--            </code>-->
+<!--        </pre>-->
+<!--        </div>-->
+<!--    </div>-->
+
+    <hr>
+    <div class="media" >
+        <h2>ThreeJS Demo</h2>
+        <script type="module" src="/main.js"></script>
+
+    </div>
+
+</div>
+
+<!--EXPERIMENT-->
+<!--    <div class="docs-demo-html countdown">-->
+<!--    <div class="small justified row">-->
+<!--        <div class="square" ></div>-->
+<!--        <div class="square"></div>-->
+<!--        <div class="square"></div>-->
+<!--        <div class="square"></div>-->
+<!--        <div class="square"></div>-->
+<!--    </div>-->
+<!--    <div class="small justified row">-->
+<!--        <div class="square"></div>-->
+<!--        <div class="square"></div>-->
+<!--        <div class="square"></div>-->
+<!--        <div class="square"></div>-->
+<!--        <div class="square"></div>-->
+<!--    </div>-->
+<!--    <div class="small justified row">-->
+<!--        <div class="square"></div>-->
+<!--        <div class="square"></div>-->
+<!--        <div class="square"></div>-->
+<!--        <div class="square"></div>-->
+<!--        <div class="square"></div>-->
+<!--    </div>-->
+<!--    <div class="small justified row">-->
+<!--        <div class="square"></div>-->
+<!--        <div class="square"></div>-->
+<!--        <div class="square"></div>-->
+<!--        <div class="square"></div>-->
+<!--        <div class="square"></div>-->
+<!--    </div>-->
+<!--    <div class="small justified row">-->
+<!--        <div class="square"></div>-->
+<!--        <div class="square"></div>-->
+<!--        <div class="square"></div>-->
+<!--        <div class="square"></div>-->
+<!--        <div class="square"></div>-->
+<!--    </div>-->
+<!--    </div>-->
+
+<!--    <div class="large centered row">-->
+<!--        <div class="half col">-->
+<!--    <pre class="large log row">-->
+<!--      <span class="label">current time</span>-->
+<!--      <span class="value lcd">0</span>-->
+<!--    </pre>-->
+<!--        </div>-->
+<!--        <div class="half col">-->
+<!--    <pre class="large log row">-->
+<!--      <span class="label">callback fired</span>-->
+<!--      <span class="value lcd">0</span>-->
+<!--    </pre>-->
+<!--        </div>-->
+<!--    </div>-->
+
+<!--    <div class="large centered row">-->
+<!--        <div class="col">-->
+<!--    <pre class="large log row">-->
+<!--      <span class="label">timer 01</span>-->
+<!--      <span class="deadline-timer lcd">0</span>-->
+<!--    </pre>-->
+<!--        </div>-->
+<!--        <div class="col">-->
+<!--    <pre class="large log row">-->
+<!--      <span class="label">timer 02</span>-->
+<!--      <span class="deadline-timer value lcd">0</span>-->
+<!--    </pre>-->
+<!--        </div>-->
+<!--        <div class="col">-->
+<!--    <pre class="large log row">-->
+<!--      <span class="label">timer 03</span>-->
+<!--      <span class="deadline-timer value lcd">0</span>-->
+<!--    </pre>-->
+<!--        </div>-->
+<!--    </div>-->
+
+<!--    <div class="large centered row">-->
+<!--        <div class="col">-->
+<!--    <pre class="large log row">-->
+<!--      <span class="label">DAYS</span>-->
+<!--      <span class="days timer lcd">0</span>-->
+<!--    </pre>-->
+<!--        </div>-->
+<!--        <div class="col">-->
+<!--    <pre class="large log row">-->
+<!--      <span class="label">HOURS</span>-->
+<!--      <span class="hours timer lcd">0</span>-->
+<!--    </pre>-->
+<!--        </div>-->
+<!--        <div class="col">-->
+<!--    <pre class="large log row">-->
+<!--      <span class="label">MINUTES</span>-->
+<!--      <span class="minutes timer lcd">0</span>-->
+<!--    </pre>-->
+<!--        </div>-->
+<!--        <div class="col">-->
+<!--    <pre class="large log row">-->
+<!--      <span class="label">SECONDS</span>-->
+<!--      <span class="seconds timer lcd">0</span>-->
+<!--    </pre>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--END OF EXPERIMENT-->
+
+</body>
+</html>

@@ -1,0 +1,36 @@
+{
+  "name": "refshading",
+  "version": "1.0.0",
+  "description": "viza 656 2nd project",
+  "keywords": [
+    "webgpu",
+    "webgl",
+    "shader",
+    "3d",
+    "2d"
+  ],
+  "homepage": "https://github.com/voidlotus/refshading#readme",
+  "bugs": {
+    "url": "https://github.com/voidlotus/refshading/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/voidlotus/refshading.git"
+  },
+  "license": "ISC",
+  "author": "ignatius alex wijayanto",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite --host 0.0.0.0 --port 8080",
+    "build": "vite build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "animejs": "^4.3.6",
+    "three": "^0.182.0"
+  },
+  "devDependencies": {
+    "vite": "^7.3.1"
+  }
+}
